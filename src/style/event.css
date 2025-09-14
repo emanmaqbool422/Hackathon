@@ -1,0 +1,174 @@
+/* ...existing code... */
+/* Event cards layout and styles - 3 cards per row, responsive */
+
+/* Theme vars */
+:root {
+  --page-bg: #fbece2; /* pale peach background */
+  --card-bg: #f8e6dd;
+  --accent: #b65745;
+  --muted: #6b6b6b;
+  --title: rgb(132, 20, 0);
+  --radius: 12px;
+  --gap: 24px;
+}
+
+.events-wrap {
+  background: var(--page-bg);
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+
+
+/* grid: 3 cols desktop, 2 cols tablet, 1 col mobile */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* responsive breakpoints */
+@media (max-width: 1000px) {
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+    padding: 0 12px;
+  }
+}
+
+/* individual card */
+.event-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(24, 24, 24, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(24, 24, 24, 0.25);
+}
+
+/* top image area */
+.event-card .event-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.02));
+}
+
+/* card content padding */
+.event-card .card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* thin separator line */
+.event-card .divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 6px 0 0;
+}
+
+/* title */
+.event-title {
+  font-size: 2rem;
+  text-align: center;
+  
+  line-height: 1.05;
+  color: ;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* description / location */
+.event-desc {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* meta row with small icons */
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+
+/* icon circle / size - expects FontAwesome or similar icons in markup */
+.meta-item .icon {
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(182, 87, 69, 0.08);
+  color: var(--accent);
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex: 0 0 34px;
+}
+
+/* subtle clock/calendar text emphasis */
+.meta-item .text {
+  color: var(--title);
+}
+
+/* CTA / register line */
+.event-footer {
+  margin-top: auto;
+  padding-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* small pill button */
+.register-btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 12px rgba(182, 87, 69, 0.12);
+}
+
+/* ensure images and text scale on small screens */
+@media (max-width: 420px) {
+  .event-card .event-image {
+    height: 140px;
+  }
+  .event-title {
+    font-size: 1.3rem;
+  }
+  .meta-item {
+    font-size: 0.95rem;
+  }
+}

@@ -1,0 +1,220 @@
+/* Page container */
+.createEventPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 24px 16px;
+  background-color: var(--light-bg);
+  min-height: calc(100vh - 80px);
+  box-sizing: border-box;
+}
+
+/* Form container */
+.formContainer {
+  background: linear-gradient(
+    293deg,
+    rgba(255, 242, 233, 0.85) 1.44%,
+     rgba(255, 242, 233, 0.85) 100.14%
+  );
+  padding: 28px;
+  border-radius: 14px;
+  max-width: 50%;
+  width: 100%;
+  box-sizing: border-box;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Lift on hover (desktop only) */
+@media (hover: hover) {
+  .formContainer:hover {
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.18);
+  }
+}
+
+/* Form heading */
+.formContainer h1,
+.createEventPage > h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.9rem;
+  font-weight: 700;
+  color: var(--title);
+  margin-bottom: 18px;
+  text-align: left;
+  text-shadow: 0 2px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* Grid layout */
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 18px;
+  align-items: start;
+}
+
+/* Full-width items */
+.formGrid .full {
+  grid-column: 1 / -1;
+}
+
+/* Responsive grid (mobile) */
+@media (max-width: 820px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Input groups */
+.inputGp {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.inputGp label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 8px;
+}
+
+/* Inputs, textareas, selects */
+.inputGp input,
+.inputGp textarea,
+.inputGp select {
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  font-size: 0.98rem;
+  font-family: var(--font-family);
+  background-color: #fffaf7;
+  color: #111;
+  box-sizing: border-box;
+  caret-color: var(--primary-color);
+
+  transition: border-color 0.18s ease, box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+.inputGp input::placeholder,
+.inputGp textarea::placeholder {
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.inputGp input:focus-visible,
+.inputGp textarea:focus-visible,
+.inputGp select:focus-visible {
+  outline: 3px solid rgba(161, 25, 1, 0.08);
+  outline-offset: 2px;
+}
+
+/* Textarea */
+.inputGp textarea {
+  min-height: 120px;
+  resize: vertical;
+  padding-top: 14px;
+}
+
+/* Date & time input adjustments */
+.inputGp input[type="date"],
+.inputGp input[type="time"] {
+  padding-right: 40px;
+}
+
+/* Error state */
+.inputGp.error input,
+.inputGp.error textarea {
+  border-color: #e23b3b;
+  box-shadow: 0 8px 18px rgba(226, 59, 59, 0.08);
+}
+
+/* Actions row */
+.formActions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 6px;
+}
+
+/* Buttons */
+.formContainer button,
+.formContainer .btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #a11901;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(182, 87, 69, 0.14);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.12s ease;
+}
+
+.formContainer button:hover,
+.formContainer .btnPrimary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px rgba(161, 25, 1, 0.14);
+}
+
+.formContainer button:active {
+  transform: translateY(-1px);
+}
+
+.formContainer button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Secondary button */
+.formContainer .btnSecondary {
+  background: transparent;
+  color: var(--title);
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Responsive: button full width */
+@media (max-width: 520px) {
+  .formActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .formContainer button,
+  .formContainer .btnPrimary,
+  .formContainer .btnSecondary {
+    width: 100%;
+  }
+}
+
+/* Extra narrow screen adjustments */
+@media (max-width: 360px) {
+  .formContainer {
+    padding: 18px;
+    border-radius: 12px;
+  }
+  .formContainer h1 {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+}

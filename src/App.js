@@ -45,7 +45,7 @@ function App() {
         {/* Events List Page */}
         <Route path="/events" element={<EventsList />} />
         <Route path="/admin" element={<Admin />} />
-
+        
 
         {/* Registration Form Page */}
         <Route path="/register/:eventId" element={<RegisterForm />} />

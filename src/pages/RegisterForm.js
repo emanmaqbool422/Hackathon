@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";  // ✅ navigate add
 import { db } from "../Firebase-config";
 import { doc, getDoc, addDoc, collection, serverTimestamp } from "firebase/firestore";
-import "../style/register.css"
+import "../style/register.css";
 
 function RegisterForm() {
   const { eventId } = useParams();
+  const navigate = useNavigate(); // ✅ navigation hook
 
   const [event, setEvent] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [success, setSuccess] = useState(false); // ✅ success popup ke liye
 
   // get event details by id
   useEffect(() => {
@@ -42,16 +42,15 @@ function RegisterForm() {
         timestamp: serverTimestamp(),
       });
 
-      // ✅ success popup show
-      setSuccess(true);
+      // ✅ Navigate to success page with message
+      navigate("/success", {
+        state: { message: "🎉 Event created successfully! " },
+      });
 
-      // ✅ form reset
+      // ✅ reset form
       setName("");
       setEmail("");
       setPhone("");
-
-      // ✅ popup 3s baad hide
-      setTimeout(() => setSuccess(false), 3000);
     } catch (err) {
       console.error("Error saving registration:", err);
     }
@@ -59,7 +58,7 @@ function RegisterForm() {
 
   return (
     <div className="registerPage">
-        <h2>Register for Event</h2>
+      <h2>Register for Event</h2>
       <div className="formContainer">
         {event && (
           <div className="eventInfo">
@@ -104,13 +103,6 @@ function RegisterForm() {
 
           <button type="submit">Register</button>
         </form>
-
-        {/* ✅ Success Popup */}
-        {success && (
-          <div className="popup">
-            🎉 Registration Successful!
-          </div>
-        )}
       </div>
     </div>
   );

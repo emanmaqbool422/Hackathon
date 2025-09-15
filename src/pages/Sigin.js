@@ -1,33 +1,20 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth, siginWithGoogle } from "../Firebase-config";
+import React from 'react'
+import { Form } from 'react-router-dom'
+import { siginWithGoogle } from '../Firebase-config'
 
-const AuthContext = createContext();
-
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => unsub();
-  }, []);
-
-  const login = async () => {
-    // call your firebase/google sign-in helper
-    await siginWithGoogle();
-  };
-
-  const logout = async () => {
-    await signOut(auth);
-  };
-
+const Sigin = () => {
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+    <>
+     <div className="App">
+        <button onClick={siginWithGoogle}>SignIn With Google</button>
+        <div>
+          <h1>Name :{localStorage.getItem("name")}</h1>
+          <h1>Email: {localStorage.getItem("email")}</h1>
+          <img src={localStorage.getItem("profilePic")} />
+        </div>
+      </div>
+    </>
+  )
+}
 
-export const useAuth = () => useContext(AuthContext);
+export default Sigin
